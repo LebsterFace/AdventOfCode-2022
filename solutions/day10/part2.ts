@@ -14,16 +14,13 @@ let cycle = 0;
 
 const pixelToDraw = () => {
 	const column = cycle % WIDTH;
-	if (X - 1 <= column && X + 1 >= column) {
-		return '█';
-	}
-	return ' ';
+	return X - 1 <= column && X + 1 >= column ? '█' : ' ';
 };
 
 const drawPixel = () => {
 	const row = Math.floor(cycle / WIDTH);
 	const column = cycle % WIDTH;
-	CRT[row][column] = pixelToDraw().repeat(3);
+	CRT[row][column] = pixelToDraw().repeat(2);
 };
 
 const nextCycle = () => {
