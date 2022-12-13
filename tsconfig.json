@@ -6,7 +6,8 @@
 		"module": "CommonJS",
 		"noImplicitAny": true,
 		"resolveJsonModule": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"inlineSourceMap": true
 	},
 	"include": [
 		"solutions/**/*.ts"
