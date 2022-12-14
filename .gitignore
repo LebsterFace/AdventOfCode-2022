@@ -25,7 +25,11 @@ solutions/day11/part2.js
 
 solutions/day12/part1.js
 solutions/day12/part2.js
-/solutions/day12/both.js
-/solutions/day13/part1.js
-/solutions/day13/part2.js
-/solutions/day13/both.js
+solutions/day12/both.js
+
+solutions/day13/part1.js
+solutions/day13/part2.js
+solutions/day13/both.js
+
+solutions/day14/part1.js
+/solutions/day14/part2.js
