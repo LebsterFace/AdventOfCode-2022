@@ -22,7 +22,7 @@ const set = ({ x, y }: Point, value: Tile) => {
 	map.set(`${x},${y}`, value);
 };
 
-const scans: { sensor: Point, distance: number; }[] = [];
+const scans: { sensor: Point, beacon: Point; distance: number; }[] = [];
 
 let minX = Infinity;
 let maxX = -Infinity;
@@ -39,14 +39,13 @@ for (const { sensor, beacon } of input) {
 	maxX = Math.max(maxX, sensor.x + distance, beacon.x + distance);
 	maxY = Math.max(maxY, sensor.y + distance, beacon.y + distance);
 
-	scans.push({ sensor, distance });
+	scans.push({ sensor, beacon, distance });
 }
 
 scans.sort((a, b) => a.sensor.x - b.sensor.x);
 
 // Returns true if P would be represented by a #
 const cannotHaveBeacon = (P: Point) => {
-	if (map.get(`${P.x},${P.y}`) === Tile.BEACON) return;
 	return scans.find(({ sensor, distance }) => manhattan(sensor, P) <= distance);
 };
 
@@ -54,19 +53,27 @@ const beacon_max = 4000000;
 for (let y = minY; y <= maxY; y++) {
 	if (y === 2000000) {
 		let count = 0;
-		for (let x = minX; x <= maxX; x++) {
-			if (cannotHaveBeacon({ x, y })) {
-				count++;
+		let x = minX;
+
+		while (x <= maxX) {
+			const result = cannotHaveBeacon({ x, y });
+			if (result) {
+				const newX = result.sensor.x + result.distance - Math.abs(result.sensor.y - y) + 1;
+				// If this jump would pass over the beacon
+				if (result.beacon.y === y && (result.beacon.x > x && result.beacon.x < newX)) count--;
+				count += newX - x;
+				x = newX;
+			} else {
+				x++;
 			}
 		}
-		
+
 		console.log('Part 1:', count);
 	}
 
 	let x = 0, result;
 	while (result = cannotHaveBeacon({ x, y })) {
-		const yDiff = Math.abs(result.sensor.y - y);
-		x = result.sensor.x + (/* Remaining distance */ result.distance - yDiff) + 1;
+		x = result.sensor.x + result.distance - Math.abs(result.sensor.y - y) + 1;
 	}
 
 	if (!(y > beacon_max || y < 0 || x > beacon_max || x < 0)) {
