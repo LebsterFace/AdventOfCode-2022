@@ -6,8 +6,10 @@
 		"module": "CommonJS",
 		"noImplicitAny": true,
 		"resolveJsonModule": true,
+        "moduleDetection": "force",
 		"esModuleInterop": true,
-		"inlineSourceMap": true
+		"inlineSourceMap": true,
+		"lib": [ "ES2022" ]
 	},
 	"include": [
 		"solutions/**/*.ts"
