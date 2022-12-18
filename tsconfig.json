@@ -9,6 +9,7 @@
         "moduleDetection": "force",
 		"esModuleInterop": true,
 		"inlineSourceMap": true,
+		"noUnusedLocals": true,
 		"lib": [ "ES2022" ]
 	},
 	"include": [
