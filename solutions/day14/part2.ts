@@ -17,24 +17,6 @@ const ROCK = 2;
 const cave: Record<`${number},${number}`, Sand | Rock> = {};
 const set = (x: number, y: number, value: Sand | Rock): void => { cave[`${x},${y}`] = value; };
 const readInput = (x: number, y: number): Sand | Rock | undefined => cave[`${x},${y}`];
-const render = () => {
-	for (let y = minY; y <= maxY; y++) {
-		let result = `${y} `;
-		for (let x = minX; x <= maxX; x++) {
-			if (x === 500 && y === 0) {
-				result += '+';
-			} else {
-				const v = get(x, y);
-				if (v === ROCK) result += '#';
-				else if (v === SAND) result += 'o';
-				else result += '.';
-			}
-		}
-
-		console.log(result);
-	}
-};
-
 
 for (const formation of input) {
 	let { x, y } = formation[0];
@@ -49,9 +31,6 @@ for (const formation of input) {
 }
 
 const coords = Object.keys(cave).map(c => c.split(",").map(m => parseInt(m)));
-const minX = coords.map(([x, y]) => x).reduce((a, b) => Math.min(a, b));
-const maxX = coords.map(([x, y]) => x).reduce((a, b) => Math.max(a, b));
-const minY = 0;
 const maxY = coords.map(([x, y]) => y).reduce((a, b) => Math.max(a, b));
 
 const floorY = maxY + 2;
