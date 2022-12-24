@@ -79,29 +79,20 @@ const round = () => {
 	return elfMoved;
 };
 
-const getBounds = () => {
-	const elfPositions = Array.from(elves, e => e.split(",").map(Number) as [number, number]);
-	let minX = Infinity, minY = Infinity;
-	let maxX = -Infinity, maxY = -Infinity;
-	for (const [x, y] of elfPositions) {
-		if (x < minX) minX = x;
-		if (y < minY) minY = y;
-		if (x > maxX) maxX = x;
-		if (y > maxY) maxY = y;
-	}
-
-	return {
-		minX,
-		minY,
-		maxX,
-		maxY
-	};
-};
-
 let i = 1;
 while (round() || i <= 10) {
 	if (i === 10) {
-		const { minX, minY, maxX, maxY } = getBounds();
+		// Get the bounds
+		const elfPositions = Array.from(elves, e => e.split(",").map(Number) as [number, number]);
+		let minX = Infinity, minY = Infinity;
+		let maxX = -Infinity, maxY = -Infinity;
+		for (const [x, y] of elfPositions) {
+			if (x < minX) minX = x;
+			if (y < minY) minY = y;
+			if (x > maxX) maxX = x;
+			if (y > maxY) maxY = y;
+		}
+
 		const width = (maxX - minX) + 1;
 		const height = (maxY - minY) + 1;
 		const area = width * height;
