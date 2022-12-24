@@ -8,13 +8,13 @@ solutions/day*/input.txt
 solutions/day*/example.txt
 
 # TypeScript dist files
-solutions/day2/both.js
+solutions/day02/both.js
 
-solutions/day7/both.js
+solutions/day07/both.js
 
-solutions/day8/both.js
+solutions/day08/both.js
 
-solutions/day9/both.js
+solutions/day09/both.js
 
 solutions/day10/part1.js
 solutions/day10/part2.js
